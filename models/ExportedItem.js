@@ -4,7 +4,7 @@ const { sequelize } = require("../config/config");
 const Users = require("./User");
 const Stores = require("./Store");
 const NewItem = require("./NewItem");
-const ExportedItems = sequelize.define("Exported_items", {
+const ExportedItems = sequelize.define("export_item", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,

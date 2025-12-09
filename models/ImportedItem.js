@@ -4,7 +4,7 @@ const { sequelize } = require("../config/config");
 const NewItems = require("./NewItem");
 const Stores = require("./Store");
 const Users = require("./User");
-const ImportedItems = sequelize.define("Imported_items", {
+const ImportedItems = sequelize.define("import_item", {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,

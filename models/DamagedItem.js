@@ -3,7 +3,7 @@ const { sequelize } = require("../config/config");
 const Stores = require("./Store");
 const Users = require("./User");
 const NewItem = require("./NewItem");
-const DamagedItems = sequelize.define("Damaged_items", {
+const DamagedItems = sequelize.define("damaged_item", {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,

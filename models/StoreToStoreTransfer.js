@@ -3,7 +3,7 @@ const { sequelize } = require("../config/config");
 const Users = require("./User");
 const Stores = require("./Store");
 const NewItem = require("./NewItem");
-const StoreToStoreTransfer = sequelize.define("StoreToStoreTransfer", {
+const StoreToStoreTransfer = sequelize.define("store_to_store", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,

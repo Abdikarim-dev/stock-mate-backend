@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 const { sequelize } = require("../config/config");
 const NewItem = require("./NewItem");
 const Stores = require("./Store");
-const Alerts = sequelize.define("Alerts", {
+const Alerts = sequelize.define("alert", {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
