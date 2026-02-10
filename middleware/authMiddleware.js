@@ -2,12 +2,14 @@ const jwt = require("jsonwebtoken");
 
 const authenticate = (request, response, next) => {
   // Get the token
-  const token =
-    request.headers.authorization &&
-    request.headers.authorization.split(" ")[1];
-    
+  // const token =
+  //   request.headers.authorization &&
+  //   request.headers.authorization.split(" ")[1];
+
+  const token = request.cookies?.token
+
   if (!token)
-    return response.status(404).json({ message: "No Token Provided" });
+    return response.status(404).json({ message: "Authentication required!" });
 
   try {
     // Comparing the tokens
@@ -43,7 +45,7 @@ const authorizeRoles = (...allowedRoles) => {
       next();
     } else {
       return response.status(403).json({
-        message: "Forbidden: Access denied",
+        message: "Forbidden: Access denied!!",
       });
     }
   };

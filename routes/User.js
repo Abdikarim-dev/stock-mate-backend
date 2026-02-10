@@ -2,10 +2,11 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const Users = require("../models/User");
 const { Op } = require("sequelize");
+const { upload } = require("../config/imageUpload");
 
 const router = express.Router();
 
-router.post("/create", async (request, response) => {
+router.post("/", upload.single("image"), async (request, response) => {
   try {
     const { fullname, username, phone, email, role, password } = request.body;
 
@@ -66,16 +67,12 @@ router.post("/create", async (request, response) => {
   }
 });
 
-router.get("/read", async (_, response) => {
+router.get("/", async (_, response) => {
   try {
     const users = await Users.findAll()
 
 
-    response.status(200).json({
-      success: true,
-      message: "all the users ",
-      users
-    })
+    response.status(200).json(users)
 
   } catch (error) {
     response.status(400).json({
@@ -85,7 +82,7 @@ router.get("/read", async (_, response) => {
     })
   }
 })
-router.get("/read/:id", async (request, response) => {
+router.get("/:id", async (request, response) => {
   const id = parseInt(request.params.id);
 
   const user = await Users.findByPk(id);
@@ -95,7 +92,7 @@ router.get("/read/:id", async (request, response) => {
     data: user,
   });
 });
-router.patch("/update/:id", async (request, response) => {
+router.patch("/:id", upload.single("image"), async (request, response) => {
   try {
     const id = parseInt(request.params.id)
     console.log("update", id);
@@ -130,13 +127,13 @@ router.patch("/update/:id", async (request, response) => {
     });
   }
 });
-router.delete("/delete/:id", async (request, response) => {
+router.delete("/:id", async (request, response) => {
   try {
     const id = parseInt(request.params.id)
 
     const user = await Users.findByPk(id)
 
-    if (!user) return response.status(404).json({success: false, message: "user not found" })
+    if (!user) return response.status(404).json({ success: false, message: "user not found" })
 
     const deletedUser = await Users.destroy({ where: { id } })
 

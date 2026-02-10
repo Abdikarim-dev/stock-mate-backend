@@ -3,6 +3,6 @@ const { dashboardCard, topInventories } = require("../controllers/Dashboard");
 const { authorizeRoles } = require("../middleware/authMiddleware");
 const router = express.Router();
 
-router.get("/cards", authorizeRoles("ADMIN", "staff"), dashboardCard)
-router.get("/summary", authorizeRoles("ADMIN", "staff"), topInventories)
+router.get("/cards", authorizeRoles("ADMIN", "STAFF"), dashboardCard)
+router.get("/summary", authorizeRoles("ADMIN", "STAFF"), topInventories)
 module.exports = router;
